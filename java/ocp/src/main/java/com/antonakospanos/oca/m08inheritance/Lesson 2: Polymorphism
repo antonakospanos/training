@@ -1,0 +1,37 @@
+- Polymorphism (uses inheritance)
+  ------------
+"MANY FORMS!"
+"The ability to look to an object in ..multiple ways!"
+"Object with multiple shapes or forms..!"
+
+E.g:
+1) Overloading
+2) Generics
+3) Operators
+
+class Animal				// Generalized form
+class Dog extends Animal	// Specialized form
+
+// Dog -> Animal
+
+Dog dog = new Dog();
+Animal animal = new Dog();	// Dog is both a Dog as well as an Animal!
+Animal[] zoo = new Animal[100];
+
+zoo[0] = new Tiger();
+zoo[1] = new Dog()'
+..
+
+public void feed(Animal animal) {}
+feed(dog);
+feed(animal);
+
+
+
+"Class Definition:
+------------------
+type:    aVar.getClass().getName();
+parent:  aVar.getClass().getSuperClass();
+methods: aVar.getClass().getMethods();
+
+(aVar instanceof ObjType) // ObjType maybe a class or an interface

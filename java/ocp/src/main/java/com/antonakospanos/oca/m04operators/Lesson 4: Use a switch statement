@@ -1,0 +1,27 @@
+int x;
+
+switch (x) {
+	case <value A>:
+		// ..some code..
+		break;
+	case <value B>:
+	case <value C>:
+	case <value D>:
+		// ..some code..
+		break;		
+	
+	...
+	
+ 	default:
+ 		// ..some code..
+ 		// break;
+}
+
+(x) data type may be any of the following:
+- int
+- short
+- byte
+- char
+
+- "enum" // Since Java 5 (named values)
+- String // Since Java 7

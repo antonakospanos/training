@@ -1,0 +1,19 @@
+while (<boolean-expression>) {
+	<statement>;
+	<statement>;
+}
+
+int counter = 0;
+int x = 10;
+while (x>0) {
+	System.out.println("Iteration" +  ++counter);
+	x--;
+}
+
+// Iterate Collection
+ArrayList<Object> objs = new ArrayList<>(); // Java 7 diamond operator: Generic is found from the Instance type
+int counter = 0;
+while (counter < objs.size()) {
+	System.out.println(objs.get(counter));
+	counter++;
+}

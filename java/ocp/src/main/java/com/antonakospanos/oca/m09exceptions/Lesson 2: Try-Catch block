@@ -1,0 +1,119 @@
+- Separation of concerns
+  ----------------------
+try {
+	// code for the "happy path"
+}
+catch (AException a) {
+	// handle problem a
+}
+catch (BException b) {
+	// handle problem b
+}
+...
+
+Syntax:
+-------
+1) try+catch
+2) try+catch+finally
+3) try+finally
+
+- Retries
+  -------
+public static final int MAX_TRIES = 4;
+public static final int MAX_ATTEMPTS = 4;
+public static final int MAX_RETRIES = 3;
+
+**/
+*	Checked Exceptions shall be declared in the method signature
+*
+* 	@throws HappyPathFailedException
+*/
+public void doStuff() throws HappyPathFailedException {
+	boolean success = false;
+	int attempts = 0;
+	
+	while (!success) {
+		try {
+			// code for the "happy path"
+			success = true;
+		} catch(Exception e) {
+			if (++attempts >= MAX_ATTEMPTS) {
+				throw new HappyPathFailedException("Too many retries."
+				+ "Cause: ", e);
+			}
+		}
+	}
+}
+
+- Finally
+  -------
+Network sockets, 
+the underlying OS resource the creates a network endpoint,
+are in limited supply.
+E.g:
+20.000, 100.000 or ulimit -n
+
+"Thus, when we have opened a file/socket/..
+we need to be CONFIDENT
+that when we are done with these type of resources,
+we CLOSE them and RETURN them BACK to the OS.."
+
+Java provides a mechanism for doing just this: "finally block"
+
+Socket s;
+try {
+	s = ... // Connect Socket
+	// code
+} catch () {
+
+} finally {
+	// Block executed either in case of:
+	// i) Happy path
+	// ii) Checked Exception
+	// iii) Unchecked Exception (!!)
+	if (s != null) {
+		// Close the socket so that we AVOID a SOCKET LEAK!!
+		// Release the socket's file descriptor
+		try {
+			s.close();
+		} catch (IOException ioe) {
+			LOGGER.error("Could not release network socket. " +
+			"This error created a socket leak");
+		}
+	}
+}
+
+- try with "auto-closeable" RESOURCES (Java7)
+  -------------------------------------------
+Provided that we have resources that implement the interface
+java.lang.AutoCloseable
+we can use the following cleaner approach:
+
+// The pieces in the parenthesis after try keyword are
+// resources that must be "auto-closeable"
+// The resources shall be both declared AND initialized!
+try (Socket s = x.connect(); InputStream is = y.open();) {
+	// happy path code
+} catch() {
+	// Handling for checked exceptions
+}
+
+Even without a finally block the javac will inject 
+the corresponding finally block to ensure that 
+these resources will be closed and released back to the OS!
+
+Declaration and Initialization of RESOURCES are distinguished
+with a semi-color!
+The trailing semi-colon in the parenthesis is optional 
+(just as in the items of Collections)
+
+Syntax:
+-------
+1) try with resources
+2) try with resources+catch
+3) try with resources+catch+finally
+4) try with resources+finally
+
+try with resources implies [try & finally] block,
+hence
+try with resources can be used all alone too!!

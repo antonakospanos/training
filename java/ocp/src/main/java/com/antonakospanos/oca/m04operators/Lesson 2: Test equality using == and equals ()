@@ -1,0 +1,10 @@
+- equals() or == operator
+  -----------------------
+== operator evaluates the primitive data types or the reference of the objects
+
+var = value of the primitive data type
+var = reference of the object (that keeps its value)
+
+obj.equals(Object o)			// obj.equals() uses (obj == o) operation! Final class shall override Object class's equals() method based on the class's business logic!
+x.equals(ClassType x)			// compare same classes
+x.contentEquals(ClassType y)	// compare diff classes

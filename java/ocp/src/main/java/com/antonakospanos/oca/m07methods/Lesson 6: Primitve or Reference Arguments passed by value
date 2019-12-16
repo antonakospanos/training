@@ -1,0 +1,40 @@
+Method Local Variables!
+-----------------------
+
+i) PRIMITIVE ARG:
+-----------------
+int x = 99;
+addOne(x);
+
+// The value of int x is COPIED in the value of the local variable x of the method.
+// Pass x variable by value!!!
+// The value of int x of the class instance was NOT modified, was just COPIED!
+
+void addOne (int x) {
+	x++;
+	system.out.println("x is "+ x);
+}
+
+ν
+ii) REFERENCE ARG:
+------------------
+StringBuilder sb = new StringBuilder("Hello");
+addOne(sb);
+
+// The value of sb is the pointer to StringBuilder object.
+// Pass sb pointer by value!!
+// The value of StringBuilder sb POINTER won't be modified.
+// The value of StringBuilder sb OBJECT however may be modified!! (here WILL be modified) 
+
+void addOne (StringBuffer sb) {
+	sb.append(" World);
+	system.out.println("sb is "+sb);
+}
+
+// The value of StringBuilder sb OBJECT won't be modified here!!
+// The local sb uses a new pointer to another Object in the memory 
+
+void addOne (StringBuffer sb) {
+	sb = new StringBuilder("Goodbye!");
+	system.out.println("sb is "+sb);
+}

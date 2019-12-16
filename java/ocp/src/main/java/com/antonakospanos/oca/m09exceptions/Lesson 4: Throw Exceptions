@@ -1,0 +1,4 @@
+Caller may catch the thrown checked exception 
+and handle the problem!
+E.g:
+Handling in Main.exceptions() method

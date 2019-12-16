@@ -1,0 +1,43 @@
+- "Happy Path"
+  -----------
+The success path without any error/exception occur!
+
+- "robust code"
+   ------------
+Code handing error case from the external environment. 
+E.g:
+- Please specify a filename to parse!
+- Please give me args!
+etc
+
+Problem Categories:
+-------------------
+1) Checked Exceptions 	// Problem caused by external environment
+---------------------
+Caused by bad user input, missing args, etc
+A robust implementation should try to catch them and fix them!!!
+
+2) Unchecked Exceptions
+-----------------------
+No effort by the javac so that we fix it!
+
+	2i) Runtime Exceptions	// Bug caused by bad coding, debug it!
+	----------------------
+	The problem should NOT be caught, the execution should NOT recover
+	The Developer will try to debug to find the cause and fix it
+	
+	2ii) Errors		// Errors external to the program!
+	-----------
+	catastrophic, unrecoverable
+	E.g: stackoverflow
+		 out of heap memory
+
+
+Class Hierarchy:
+---------------
+					Throwable
+Error(Unchecked)				Exception (Checked & Unchecked)	
+
+OutOfMemoryError		RuntimeException (Unchecked)	IOError(Checked)   ...
+...						IndexOutOfBoundsException
+						...

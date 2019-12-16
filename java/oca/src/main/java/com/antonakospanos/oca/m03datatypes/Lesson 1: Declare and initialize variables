@@ -1,0 +1,7 @@
+- Variable Declaration and Initialization
+  ----------------------------------------
+
+a) member variables, instance variables (in the object's scope)
+b) stack variables (in the method's scope)
+
+int x=100, y=200, z=x+y;

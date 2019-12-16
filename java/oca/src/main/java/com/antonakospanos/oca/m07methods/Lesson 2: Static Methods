@@ -1,0 +1,28 @@
+- Static Fields
+  -------------
+Class (static)		// Created on compilation time!
+Object (instance)	// Created on runtime!
+
+"All the objects in a class SHARE the static fields of that class"
+
+(non-static) instance variables (diff)
+(static) class variables (shared)
+
+- Static Methods
+  --------------
+
+public class Example {
+	public static Integer x;
+	public Integer y;	
+}
+
+Unqualified reference
+---------------------
+y = 99; 	// The compiler does not know which instance, so assumes:
+this.y = 99;
+
+Qualified reference
+-------------------
+Example ex = new Example();
+ex.y = 99;	// Member variable of a specified instance
+ex.x = 100;	// Class variable of a common class

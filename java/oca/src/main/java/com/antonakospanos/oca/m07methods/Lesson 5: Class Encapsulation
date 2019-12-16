@@ -1,0 +1,8 @@
+Encapsulation design!
+---------------------
+
+All member variables shall be private!!!
+Thus, we can see in stack trace which setter/getter had
+access to the variable!
+
+All constant variables (immutable or primitives) can be public!!

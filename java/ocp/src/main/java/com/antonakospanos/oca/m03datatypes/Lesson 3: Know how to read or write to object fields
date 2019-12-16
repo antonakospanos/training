@@ -1,0 +1,5 @@
+- Java PASSES the arguments BY VALUE (regardless if the argument is a primitive data type or the reference of an object) 
+  ----------------------------------
+
+Primitive args: Contain the actual value
+Reference args: Contain the reference (pointer) of the object with the value in the memory  

@@ -1,0 +1,44 @@
+a) Declaration
+   -----------
+<type name> <variable name>;
+   int[]      arrayOfInt;	// square bracket on the type name
+
+// or (based on C syntax):
+//  int      arrayOfInt[];	// square bracket on the var name
+
+b) Instantiation
+   -------------
+int[] arrayOfInt;
+arrayOfInt = new int[10];	// length of array is 10: index [0-9]
+
+(JVM limits the max length of arrays to 2G elements)
+
+c) Initialization
+   --------------
+<type name> <variable name> = <initialization>;	// with zeros, nulls, etc
+
+int[] arrayOfInt = new int[10];
+int initializer = 0;
+for (int i; i<arrayOfInt.length; i++) {
+	arrayOfInt[i] = ++initializer;
+}
+
+Shortcut for a+b+c
+-------------------
+int[] arrayOfInt = {1,2,3};		// length of 3 elements
+int[] arrayOfInt2 = {1,2,3,};	// length of 3 elements
+
+Thing[] arrayOfThings = { new Thing(), new Thing(100) }; // length of 2 elements
+doStuff(new Thing[] { new Thing(), new Thing(100) });	 // length of 2 elements
+
+d) Initialization by copying
+   -------------------------
+int[] arrayOfInt = {1,2,3};
+int[] arrayOfInt2 = new int[10];
+
+System.arraycopy(arrayOfInt, 0, arrayOfInt2, 0, arrayOfInt.length()); // This is NOT a "shallow copy" cause it does NOT occur at the reference level!
+							 ^				 ^
+			starting index of arrayOfInt	starting index of arrayOfInt2
+			
+Best Practice after copying an Array:
+arrayOfInt = arrayOfInt2;			// old arrayOfInt reference can be now GC! This is a "shallow copy", copies only the reference values!

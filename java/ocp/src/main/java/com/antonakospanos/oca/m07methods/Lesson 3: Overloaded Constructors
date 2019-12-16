@@ -1,0 +1,33 @@
+Overload Constructors
+---------------------
+class Thing {
+
+	// "Implicit Constructor" without args!
+	Thing () {	// Constructor have the name of the Class!
+		// Add code of the constructor
+	}			// Constructor does NOT have any return type! (return an instance of the class)
+
+	public Thing () {	// accessibility specification!
+		// Add code of the constructor
+	}
+	
+	public Thing (Object arg) { // Constructor Overloading!
+		// Add code of the constructor
+		return;		// implies "return this;"
+	}
+}
+
+New Object creation steps:
+--------------------------
+1) Object (memory) creted
+2) Call parent class constructors
+3) Instance initialization
+4) Constructor runs!
+
+
+In case we do not add ANY constructor the compiler adds the 
+..default Implicit Constructor, that will have the same accessibility as the Class.
+So , in case of a public Class the default Constructor will be also public.
+(Exception is the private constructor of Public enum objects!)
+
+In case we do add at least one constructor the compiler will NOT add theh default constructor.

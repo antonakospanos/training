@@ -1,0 +1,24 @@
+- Common Throwables
+  -----------------
+
+- CheckedExceptions:
+IOException			// input-output failures
+SOAPException		// SOAP based WS failures
+SQLException		// SQL DB failures
+URISyntaxException	// Malformed representation of the destination endpoint
+XMLParseException	// XML Doc processing failures
+
+- RuntimeExceptions:
+ArithmeticException		// arithmetic failures (e.g: div by zero)
+ArrayStoreException		// storage in array failures (invalid item)
+ClassCastException		// casting failures
+ArrayIndexOutOfBoundsException	// access not-existing-items failures
+NullPointerException	//	not initialized object failures
+
+  - Errors:
+1) AssertionError		// thrown by "assert" statement used by a senior Developer
+2) OutOfMemoryError		// heap
+3) StackOverflowError	// stack
+
+assert x > 0;	// disabled by default. Requires execution with argument:
+				// -ea or -enableassertions

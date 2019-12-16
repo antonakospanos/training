@@ -1,0 +1,6 @@
+do {
+	// Add some code
+	
+} while(<condition>);
+
+// The body-block is executed at least once!

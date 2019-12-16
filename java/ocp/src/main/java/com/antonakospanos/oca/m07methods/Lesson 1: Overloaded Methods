@@ -1,0 +1,87 @@
+- Method Declaration:
+  -------------------
+[modifiers] <return-type> <method-name> (<[argument-list]>) {
+	// Method body
+}
+
+Modifiers
+---------
+a) Annotation (eg. @Override)
+b) Access Control: public, protected, private
+c) abstract	// just the shape of the method without impl
+d) static
+e) final	// method cannot be overridden
+
+f) synchronized	// avoid method access at the same time by multiple threads
+g) native 	// body written in another's compiler language, 
+			// instead java code, that produces native
+			// binary machine code for any given platform
+h) strictfp	// the precise definition of the behavior of 
+			// floating point computation must be as strict
+			// as possible even if the execution get
+			// significantly slower (used by physicists, etc)
+
+
+Return Type (Java is a "STRONGLY TYPE" language)
+------------------------------------------------
+primitive data types
+class data types
+interface data types
+
+Method Name
+-----------
+1st character:	 {$, _, letter}
+rest characters: {$, _, letter, digit}
+
+Argument List
+-------------
+<arg type> <arg name>
+
+public void doStuff(String s, int i) {}
+
+	"VarArgs Invocation"
+	--------------------
+	Since Java 6 varags ("variable length argument lists") allow 
+	arbitrary("αυθαίρετο") number of args of the same type!
+	As a result we do not need to declare many overloaded methods!
+	
+	- Only in the last argument position
+	- Only in case of the following method declaration:
+	
+	public void static main (String[] args) {}
+	public void static main (String ... args) {}
+
+Method body
+-----------
+method declaration {
+	// add some method scope code
+	{
+		// add some local code
+		// blocks limit the scope of the variables
+	}
+	// add some method scope code
+
+	return <var of the return type>
+}
+
+
+Method overload
+---------------
+FQMN = {Fully Qualified Class Name.Meothod Name.Arg Types}
+E.g:
+
+void doStuff(){}
+void doStuff(String s){}
+void doStuff(float f, Date d){}
+
+Fully Qualified Method Names (FQMN):
+-----------------------------------
+mypackage.Thing.doStuff
+mypackage.Thing.doStuff(Ljava/lang/String)	// link(reference) to java.lang.String
+mypackage.Thing.doStuff(FLjava/util/Date)	// float link(reference) to java.util.Date
+
+Accepted diff Fully Qualified Method names, that is:
+Accepted same method names with diff arg types!
+
+// Return type does not distinguish FQMN!
+int doStuff(float f, Date d){} // NOT permitted!! 

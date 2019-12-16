@@ -1,0 +1,32 @@
+- Casting Classes:
+  ----------------
+The compiler permits casting only on super classes..!
+
+Dog theDog = new Dog();	// Dog extends Animal
+Cat theCat = new Cat();	// Cat extends Animal
+  
+Animal a = theDog;
+Dog d = (Dog) a;	// Compiles and runs OK!
+--------------------
+Animal a = theCat;
+Dog d = (Dog) a;	// Compiles - fails  at runtime!
+  
+- Casting with Interface types in assignments:
+  --------------------------------------------
+The compiler permits casting in any case..! (except of final classes)
+
+Tiger theTiger = new Tiger();	// Tiger extends Animal
+Puppy thePuppy = new Puppy();	// Puppy extends Animal AND implements Pet Interface
+Rock theRock = new theRock();	// Rock just implements Pet Interface
+
+Tiger -> Animal
+Puppy -> Animal, Pet
+Rock -> Pet
+
+Pet thePet = (Pet) theRock;		// Compiles and runs OK!
+Pet thePet = (Pet) thePuppy;	// Compiles and runs OK!
+Pet thePet = (Pet) theTiger;	// Compiles - fails at runtime!
+Tiger t = (Tiger) thePet;
+
+Animal a = (Animal) thePet;	// OK in case thePet is thePuppy
+							// NOK in case thePet is theRock!

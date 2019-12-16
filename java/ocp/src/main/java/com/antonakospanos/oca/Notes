@@ -1,0 +1,32 @@
+- Latency Comparison Numbers
+  --------------------------
+L1 cache reference                           0.5 ns
+L2 cache reference                           7   ns                      
+Main memory reference                      100   ns                      
+Read 4K randomly from SSD*             150,000   ns      150 us
+Read 1 MB sequentially from memory     250,000   ns      250 us
+Read 1 MB sequentially from SSD*     1,000,000   ns    1,000 us    1 ms
+Disk seek                           10,000,000   ns   10,000 us   10 ms
+Read 1 MB sequentially from disk    20,000,000   ns   20,000 us   20 ms
+
+- Concurrency among diff CPU arch
+  -------------------------------
+Diff CPUs handling multithreading processes in a different way! ByteCode maybe executed with diff order among diff CPUs:
+- ARM
+- PowerPC
+- SPARC T50
+- x86
+- AMD64
+
+java.util.concurrent
+java.util.stream
+
+immutable Objects (that cannot be changed after construction)
+volatile
+final
+
+---------
+Exercise!
+--------------------------------------------------------------------
+Start coding on WHITEBOARD!!! (without compiler's syntax evaluation)
+--------------------------------------------------------------------

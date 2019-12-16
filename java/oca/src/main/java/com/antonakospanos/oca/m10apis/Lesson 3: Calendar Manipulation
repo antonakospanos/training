@@ -1,0 +1,74 @@
+- Construct Time & Date Objects
+  -----------------------------
+- Relative dt:
+LocalDateTime ldt1 = LocalDateTime.now(); // no TMZ!
+LocalDateTime ldt2 = LocalDateTime.now(ZoneId z);
+LocalDateTime ldt3 = LocalDateTime.of(int ...);
+LocalDateTime ldt4 = LocalDateTime.parse(String dt);
+// "(static) factory" method instead of constructor
+1) Use names that describe the construction characteristics
+
+- Absolute dt: Unique instance in the history of the universe!
+ZonedDateTime
+
+- Changing Time & Date Objects
+  ----------------------------
+All date/time classes are "immutable", like String!
+
+--------------------------------------
+Immutability ensures thread-safe data!
+--------------------------------------
+
+minusDays(long days)
+minusHours(long hours)
+minusMinutes(long hours)
+
+plusDays(long days)
+plusHours(long hours)
+plusMinutes(long hours)
+
+withDayOfMonth(int dayOfMonth)
+withDayOfYear(int dayOfYear)
+withMinute(int minute)
+
+-------------------------------------------------
+Javadoc of Java SE JDK's libs!
+-------------------------------------------------
+file:///usr/local/jdk1.8.0_20/docs/api/index.html
+-------------------------------------------------
+
+- DateTimeFormatter
+  -----------------
+java.time.formatter.DateTimeFormatter
+
+Predefined Formatters:
+----------------------
+DateTimeFormatter.BASIC_ISO_DATE;
+DateTimeFormatter.ISO_DATE;
+...
+
+Custom Formatters:
+------------------
+String pattern1 = "MMM dd, yyyy";
+String pattern2 = "MMM dd, yyyy";
+
+d  ->  9 or 19 
+dd -> 09 or 19
+
+M    ->  4 or 12
+MM   -> 04 or 12
+MMM  -> Apr or Dec
+MMMM -> April or December
+
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern(pattern1);
+String dateStr = dtf.format(ldt1);
+
+
+- Compare dt
+  ----------
+LocalDateTime implements Comparable<LocalDateTime>
+ldt1.compateTo(ldt2); // as any other Comparable obj
+
+Positive // ldt1 is "AFTER" ldt2
+Negative // ldt1 is "BEFORE" ldt2
+Zero     // Objects with the same date-time

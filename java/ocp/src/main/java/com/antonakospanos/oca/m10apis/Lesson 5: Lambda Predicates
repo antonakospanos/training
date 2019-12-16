@@ -1,0 +1,97 @@
+- Predicate Interface // "test" interface
+  -------------------
+
+Predicate<T> 		// <? super T>
+boolean test(T t)	// single abstract method
+
+class Student {
+	String firstName;
+	String lastName;
+	float gradeAverage;
+	int age;
+}
+
+List<Student> students = Arrays.asList(
+	new Student("Panos", "Antonakos", 2.3F, 19),
+	new Student(null, null, 2.2F, 21),
+);
+
+Example
+--------
+Instead of two methods:
+
+get21Plus(List<Student> students);
+getFirstHalfAlphabet(List<Student> students);
+
+we create:
+
+getMatching(List<Student> students, Predicate<Student> p) {
+	List<Student> results = new ArrayList<Student>();
+	for (Student s : students) {
+		if (ps.test(s)){
+			results.add(s);
+		}
+	}
+	
+	return results;
+}
+
+and
+
+public class Student21PlusPredicate implements Predicate<Student> {
+	@Override
+	public boolean test (Student s) {
+		return s.getAge() >=21;
+	}
+}
+
+----------------------------------------------------
+getMatching(students, new Student21PlusPredicate());
+----------------------------------------------------
+or because the Predicate Interface 
+   defines explicitly a SINGLE abstract method
+   ..we could use
+   
+..a Lambda Expression!!!	// unhelpful stack trace though..
+----------------------------------------------------
+getMatching(students, (s) -> { return s.getAge() >= 21; });
+----------------------------------------------------
+or
+----------------------------------------------------
+getMatching(students, s -> s.getAge() >= 21);
+----------------------------------------------------
+or // more readable
+----------------------------------------------------
+getMatching(students, (Student s) -> s.getAge() >= 20);
+----------------------------------------------------
+or // even more readable
+----------------------------------------------------
+Predicate<Student> predicate = (Student s) -> s.getAge() >= 21;
+getMatching(students, predicate);
+
+getMatching(students, s -> s.getAge() >= 20); // valid s in Lambda
+Object s = null; // invalid, since s is already used by Lambda
+----------------------------------------------------
+
+With Traditional Java:
+- The Developer codes and Javac evaluates
+With Lambdas:
+- The Developer codes less and Javac assumes/evaluates
+
+Lambda can be used anywhere that the context supports 
+the "Type Inference mechanism".
+That is that the resulting object is an Interface
+with explicitly a SINGLE METHOD.
+E.g:
+java.util.function
+user-defined
+java api-defined with ONE ABSTRACT METHOD in the interface
+
+Predicate<String> p = (..A..) -> ..B.. ;
+
+A: must be String
+B: must be either { return <boolean>;}
+			or	  <boolean>
+					
+The Lambda expression MUST implement Predicate, 
+hence it requires the method "boolean test(String s)"

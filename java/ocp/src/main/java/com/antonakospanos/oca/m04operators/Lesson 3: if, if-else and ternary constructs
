@@ -1,0 +1,24 @@
+if (<boolean-expression>) 
+	<statement>
+else if (<boolean-expression>) {
+	<statement>
+	<statement>
+} else 
+	<statement>
+	
+// "dangling else" in case we don't use curling brackets
+// else always refers to the latest if operator
+
+
+- ternary operator ("τριαδικός χειριστής")
+  ----------------
+ <boolean-expression> ? <value A> : <value B>
+
+if (<boolean-expression>) 
+	<value A>
+else 
+	<value B>
+
+<b> ? <Class A> : <Class a> => Class A
+<b> ? <Class A> : <Class B> => Most specific supertype to which
+							   both Class A and B are assignable

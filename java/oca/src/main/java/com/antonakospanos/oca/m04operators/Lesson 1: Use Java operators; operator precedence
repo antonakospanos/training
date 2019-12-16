@@ -1,0 +1,200 @@
+- Operators, Operands (statements) and Expressions
+  ------------------------------------------------
+expression <operator> expression
+ 
+expr <op> expr	// infix operator
+<op> expr		// prefix operator
+expr <op>		// postfix operator
+
+- Operator Overloading
+  --------------------
+Diff operation based on the operand type (integer, string, etc)
+Java supports "Operator Overloading" only in case of operators with primitives:
+
+double + double 	=> double
+double + float 		=> double
+float + float 		=> float
+float + long 		=> float
+long + long 		=> long
+long + int 			=> long
+int + int 			=> int
+short + short 		=> int		// the result is at least an int!
+
+byte + short 		=>  X		// Compiler Error!!!
+
+- Arithmetic Operators
+  --------------------
++	// add
+-	// subtract
+*	// multiply
+/	// divide
+%	// modulus (mod: the remainder of a division)
+
+5/3 = 1 (remainder 2)
+5%3 = 2
+
+- "The result overflows"
+   --------------------
+Range of byte: [-128, 128]
+
+byte b1 = 100;
+byte b2 = 100;
+byte b3 = byte (b1+b2); // 100+100=200 ..too big for byte! b3 is set to infinity (-56)
+
+- '+' Operator with Strings
+
+if (String + AnyTypeWhatsoever) {			// All Objects inherit .toString()
+	=> String Concatenation
+} else if (NumericType + NumericType) {
+	=> Addition
+} else {
+	=> Compiler Error
+}
+
+Type Evaluation LEFT -> RIGHT:
+E.g:
+a) "Hello" + 1 + 2 => "Hello12"
+b) 1 + 2 + "Hello" => "3Hello"
+
+- Increment/Decrement Operators
+  -----------------------------
+++x;	// first x=x+1, then else
+--x;	// first x=x-1, then else
+x++;	// first else,  then x=x+1
+x--;	// first else,  then x=x-1
+
+- Shift Operators (To perform (in the old times) quicker ALU calculations)
+ ----------------  
+>>  // signed shift (keeps the sign)
+>>> // unsigned shift (turns to positive)
+
+42         = 0 0101010
+21 = 42>>1 = 0 0010101	// shifted all bits 1 position to the right
+10 = 42>>2 = 0 0001010	// shifted all bits 2 positions to the right
+
+-104          = 1 0011000
+-52 = -104>>1 = 1 1001100 // the 8th bit is the (sign) bit. 
+-26 = -104>>2 = 1 1100110 // (>>) operator creates a clone of the old 8th bit.
+
+Shift 1 bit to the right using (>>) operator results (n/2 - mod)
+
+-104           = 1 0011000
++52 = -104>>>1 = 0 1001100 // (>>>) operator creates only 0 bits in the left (MSB)
++38 = -104>>>2 = 0 0100110 // (>>>) operator creates only 0 bits in the left (MSB)
+
+Shift 1 bit to the right using (>>>) operator in the first two step completely diff numbers
+
+- Comparison Operators (<, <=, >, >=)
+  --------------------
+  
+- Logical Operators (on booleans or integers)
+  -----------------
+! "exclamation, boolean NOT or NOT operator"
+ 
+~ "tilde"	// bitwise NOT operator  
+& "and"	// bitwise AND operator
+| "or"	// bitwise OR  operator
+^ "xor"	// bitwise XOR operator (bitwise 'exclusive OR' operator)
+  
+Bitwise Operators ALWAYS evaluate ALL operands! It's a simple ALU calculation.
+
+- Short-Circuit Operators
+  ----------------------- 
+&&  // (false && <don't bother to evaluate>)
+||  // (true || <don't bother to evaluate>)
+
+Only the first statement may be evaluated! 
+
+- Assignment Operators (11)
+  --------------------
+// arithmetic assignment operators (5)
++=
+-=
+*=
+/=
+&=
+
+// bitwise assignment operators (3)
+&=
+|=
+^=
+
+// shift assignment operators (3)
+<<=
+>>=
+>>>=
+
+E.g:
+
+int x,y,z;
+x=y=z=0; // z=0; y=z; x=y;
+
+InputStream is = ...
+int xl
+while (( x=is.read()) != -1) { // x=is.read() BEFORE condition evaluation
+	
+}
+
+x+=6; // x=x+6;
+
+getArray()[x] = getArray()[x] + 100; // we call getArray()[x] twice. Sb may have change it!
+getArray()[x] += 100; 				 // we are sure that we add 100 to getArray()[x]
+
+- Assignment Compatibility (casting + conversion)
+  ------------------------
+byte	1B	// cast to short, int, float, long, double
+short	2B	// cast to int, float, long, double
+int		4B	// cast to float, long, double
+float	4B	// cast only float to double!
+long	8B	// cast only long to double!
+double	8B
+
+char	2B with values '\u0000' (or 0) and a maximum value of '\uffff' 
+
+int counter = 0;
+String string = "" + counter;	// this is an int to String conversion!
+Integer y = 2;				// outboxing
+String s = y.toString();	// conversion
+
+-------------------------------------------
+The cast operator has "high precedence"!!!!
+-------------------------------------------
+byte b = (byte) 123 - 100;
+byte = <byte> - <int>;
+byte = <int>;			// Runtime error!
+
+byte b = (byte) (123 - 100);
+byte = (byte) <int>;
+byte = <byte>;			// ok!
+-------------------------------------------
+
+- instanceof operators
+  --------------------
+<reference> instanceof <ClassType>	// Answers us if we can cast the reference operand to the specified Class type on the right
+
+int x;
+String s;
+Integer i;
+if (x instanceof Integer) {}	// Compilation Error. Not an object
+if (s instanceof Integer) {}	// Compilation Error. String does not inherit Integer
+if (i instanceof Integer) {}	// ok!
+if (null instanceof Object) {}	// ok, but not executed!
+if (i instanceof Integer) {}	// ok, but not executed cause i == null
+if (s instanceof String) {}		// ok, but not executed cause s == null
+
+- dot and method-invocation operators (=separators like () or [])
+  -----------------------------------
+<reference> <dot operator> <identifier>
+E.g:
+obj.toString();
+a.methodIdentifier(expression1, expression2);
+int[] arr = {0,1,2};
+arr[1];	// "reference to int[], subscript operator, index value 1, subscript operator"
+
+- operators precedence
+  --------------------
+()
+casting
+*/%		// multiplicative operations
++-		// additive operations
+left to right

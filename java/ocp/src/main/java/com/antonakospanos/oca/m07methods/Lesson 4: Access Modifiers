@@ -1,0 +1,15 @@
+Access Modifiers
+----------------
+
+public
+protected
+default
+private		// access only in the class, NOT the source file!
+
+class Thing {
+	private int x;	// accessible both in Thing and in Other!
+	
+	class Other {
+		private int y; 	// accessible both in Other and in Thing!
+	}
+}

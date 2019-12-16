@@ -1,0 +1,106 @@
+Thing t = new Thing();	// pointer to Thing object
+t.doStuff();			// invoke doStuff behavior of t object
+
+- "this" keyword
+  --------------
+class Thing {
+	private int x;
+	
+	// Wrapper Constructor using x = 99
+	public Thing() {
+		this(99);	// kw "this" refers to the constructor below!
+	}
+	
+	public Thing (int x) {
+		if (x < limitValue()) {
+			throw new Exception();
+		} else {
+			this.x = x;
+		}
+	}
+	
+	public void doStuff(int x) {
+		x++;		// most closely declared x (method) variable
+		this.x--;	// kw "this" disambiguates local vars from instance vars 
+	}
+
+	// Returns the instance	
+	public Thing getThing() {
+		return this;
+	}
+	
+	// Factory method
+	public Thing getInstance() {
+		return new Thing();
+	}
+}
+
+- "super" keyword
+  ---------------
+class Base {
+	int x;	// should be private!! (encapsulation design)
+	
+	Base(int x) {
+		this.x = x;	
+	}
+	
+	String getMessage() {
+		return "Hello";
+	}
+}
+
+class Derived extends Base {
+	int y;	// should be private!! (encapsulation design)
+	
+	Derived(int x, int y) {
+		// If super(...) is not declared the compiler will by default call super();
+		// If Base() does NOT exist we will take a compilation error!
+
+		// Here there is not Base() constructor so we declare:
+		super(x);	// calls Base(int x) constructor
+		this.y = y;
+	}
+	
+	Derived(int y) {
+		this(100, y);	// calls Derived(int x, int y) constructor
+	}
+	
+	public void method(int x) {
+		super.x = 100;	// Base.x variable
+	}
+	
+	// The problem is that "getMessage()" in the return statement
+	// will invoke the same method we are already in
+	// again and again indefinitely until eventually
+	// the STACK OVERFLOWS and the JVM KILLS the THREAD
+	// probably killing the program in the java process
+	String getMessage() {
+		// mistake
+		return getMessage() + " I'm special";
+		// correct
+		return super.getMessage() + " I'm special";
+	}
+}
+
+
+- Derived Construction
+  --------------------
+Derived d = new Derived();
+  
+1) Allocates memory for the obj in one chunk and sets all Bytes to zero
+2) Instance instantiation using Constructors (JVM checks inheritance):
+   Object -> Base -> Derived
+3) Instance Initialization using Constructors code and super(...) keyword:
+   Object -> Base -> Derived
+   
+- Construction
+  ------------
+ Constructors must begin the initialization either with:
+- this(...)
+or
+- super(...)
+
+In case neither this(...) nor super(...) is coded, then the
+compiler will execute super() call!
+
+super(...) cannot include args from this!

@@ -1,0 +1,55 @@
+- ArrayList
+  ---------
+Just a wrapper of an array handling array size!
+When the size of the array is not enouch ArrayList
+executes the "re-allocating copy-process"!
+
+- Declaration/Initialization
+  --------------------------
+"The principle of minimum knowledge": declare using Interface
+------------------------------------
+import java.util.ArrayList;
+import java.uril.List;
+
+List l1 = new ArrayList();	// Efficient to find items
+List l2 = new LinkedList(); // Efficient to insert new items
+
+l1.add("Hello 1");
+String s1 = (String) (l.get(0));
+
+List<String> l3 = new ArrayList<String>();
+l3.add("Hello 3");
+l3.get(0);
+l3.set(0, "New hello 3");
+l3.remove(0);
+l3.remove("New hello 3");
+l3.isEmpty();
+for (String s : l3) {
+	system.out.println(s);
+}
+l3.size();
+l3.clear();
+l3.contains("New hello 3");
+
+Java Programming Language is:
+-------------------------------
+"strongly and statically typed"
+-------------------------------
+That is to say that:
+"Every variable knows exactly what kind of thing
+it refers to at compile time and that could only refer
+to that kind of thing or perhaps a subclass of that
+kind of thing".
+
+List can, however contain ANY kind of Object!!
+
+Thus, we often use in case of Collections..
+Generics
+--------
+<>	// angle brackets
+{}	// curling brackets
+()	// parenthesis
+
+Java7: "Diamond operator"
+-------------------------
+List<String> l = new ArrayList<>(); // "Diamond operator"!

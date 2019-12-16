@@ -1,0 +1,80 @@
+- Declaration
+  -----------
+<type name> <var name>
+
+int[][]	arrayOfIntArrays;
+int[]	arrayOfIntArrays[];
+int 	arrayOfIntArrays[][];
+
+- Immediate Initialization (with curling brackets)
+  ------------------------
+int[][] arrayOfArraysOfInts = {
+	{1,2,3},
+	{2,4,6},
+	{9,8,7}
+}
+
+int[][] arrayOfArraysOfInts2 = {
+	{1},		// arrayOfArraysOfInts2[0].length = 1;
+	{2,3},		// arrayOfArraysOfInts2[1].length = 2;
+	{4,5,6}		// arrayOfArraysOfInts2[2].length = 3; 
+}
+
+- Iterative Initialization (using traditional and enhanced for loop!)
+  ------------------------
+int[][] arrayOfArraysOfInts3 = new int[2][3]; // zero values
+
+int initializer = 0;
+for (int[] arrayOfInts : arrayOfArraysOfInts3) {
+	for (int localVariable : arrayOfInts) {
+		localVariable = ++initializer;	// localVariable gets the value of the iterator as if we had copied: localVariable = arrayOfInts[i];
+	}
+	for (int i : arrayOfInts) {
+		System.out.println(i);			// prints zeros! The ints of the array where copied to another local scope variable that was modified..
+	}
+}
+
+initializer = 0;
+for (int[] arrayOfInts : arrayOfArraysOfInts3) {
+	for (int i = 0; i < arrayOfInts.length ; i++) {
+		arrayOfInts[i] = ++initializer;
+	}
+	for (int integer : arrayOfInts) {
+		System.out.println(integer);	// prints 1,2,3, ..!
+	}
+}
+
+int[][] arrayOfArraysOfInts4 = new int[3][];	// partial array creation syntax leaving the sub-array size (not the major-array size) empty
+
+for (int i = 0; i < arrayOfArraysOfInts4.length ; i++) {
+	arrayOfArraysOfInts4[i] = new int[i+1];		// 3 arrays with 1,2,3 length respectively!
+}
+
+Check "Enhanced/for-each loops - not possible to modify as we traverse"! (https://coderanch.com/t/552289/java/java/Enhanced-loops-modify-traverse)
+This is because primitive data types copy their value upon re-assignment and Integer is an immutable object returning a new reference upon re-assignment!
+
+Immutable Objects after creation:
+--------------------------------
+In object-oriented and functional programming, an immutable object (unchangeable object) is an object whose state cannot be modified after it is created. 
+Immutable means that each time the value of and object has changed a new reference is created for it on stack.
+
+E.g:
+String
+Integer
+Long
+Short
+Double
+Float
+Character
+Byte
+Boolean
+
+Strategy for Defining Immutable Objects:
+----------------------------------------
+a) Don't provide "setter" methods — methods that modify fields or objects referred to by fields. Any modification should result in new immutable object!!
+b) Make all fields final and private.
+c) Don't allow subclasses to override methods: The simplest way to do this is to declare the class as final. 
+   A more sophisticated approach is to make the constructor private and construct instances in factory methods.
+d) If the instance fields include references to mutable objects, don't allow those objects to be changed.
+
+https://docs.oracle.com/javase/tutorial/essential/concurrency/imstrat.html

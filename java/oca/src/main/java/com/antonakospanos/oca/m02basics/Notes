@@ -1,0 +1,55 @@
+- JRE executables
+  ----------------
+1) java: java application executor which is associated with a console to display output/errors
+2) javaw: (java windowed) application executor not associated with console. So no display of output/errors. Can be used to silently push the output/errors to text files. Mostly used to launch GUI based application
+3) javaws: (java web start) to download and run the distributed web applications. again No console is associated.
+
+All are part of JRE and use same JVM
+
+$ java -cp /home/antonakospanos/jars* com.antonakospanos.oca.m02basics.Printer
+$ export CLASSPATH=/home/antonakospanos/jars:$CLASSPATH
+$ java com.antonakospanos.oca.m02basics.Printer
+$ unset CLASSPATH
+$ echo $CLASSPATH
+  (empty line)
+  
+$ export JAVA_HOME=/usr/lib/jvm/java-18.0-openjdk
+$ export PATH=$PATH:$JAVA_HOME/bin
+
+stdin  <-JVM-> System.in
+stdout <-JVM-> System.out
+
+Console c = System.console();
+if (c != null) {
+	c.printf(); c.format();
+	PrintWriter pw = c.write();
+	pwd.println();
+} 
+
+$ javap -c com.antonakospanos.oca.m02basics.Printer.class // Java Class Disassembler: ByteCode Viewer!
+
+
+- Java Properties:
+  ----------------
+$ java -DmyProperty=myStringValue -DmyIntProperty=99 -DmyBooleanProperty=true com.antonakospanos.oca.Main
+ 
+ String sysProp1 = System.getProperty("myProperty"); 		 // sysProp1 = "myStringValue"
+ Integer sysProp2 = Integer.getInteger("myIntProperty");	 // sysProp2 = 99
+ Boolean sysProp3 = Boolean.getBoolean("myBooleanProperty"); // sysProp3 = true
+ 
+ 
+- Object Oriented Programming (OOP)
+  ---------------------------------
+Encapsulation on Mutable Objects:
+- Private member variables
+- Use setters to modify member variables AFTER arg valition)
+- Stack trace upon Exceptions will show that the execution of the setter
+
+
+- Assert
+  ------
+assertions declared with "assert" statement in front will be evaluated upon:
+$ java -ea com.antonakospanos.oca.m02basics.Assert
+$ java -enableassertions com.antonakospanos.oca.m02basics.Assert
+
+In case the assertion fails the JVM throws an AssrtionError() Exception!

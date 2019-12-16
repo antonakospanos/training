@@ -1,0 +1,48 @@
+break;
+continue;
+break identifier;
+continue identifier;
+
+<identifier>:<statement>
+
+// Break parent Loop
+   -----------------
+parentLoop: while(<condition>) {
+	// Add some code
+	while(<condition>) {
+		// Add some code
+		if (<condition>) {
+			break parentLoop;
+		}
+	}
+}
+
+// Break nested Loop
+   -----------------
+while(<condition>) {
+	// Add some code
+	nestedLoop: while(<condition>) {
+		// Add some code
+		if (<condition>) {
+			break nestedLoop;
+		}
+	}
+}
+
+// Continue/Break nested Loop
+   --------------------------
+outer: while(<condition>) {
+	// Add some code 1
+	middle: while(<condition>) {
+		// Add some code 2
+		inner: while(<condition>) {
+			// Add some code 3
+			if (<condition>) {
+				continue middle; // Omits code 4 and runs the next middle loop
+				break inner; // Executes code 4 and runs the next middle loop
+			}
+		}
+		// Add some code 4 (!)
+	}
+	// Add some code 5
+}

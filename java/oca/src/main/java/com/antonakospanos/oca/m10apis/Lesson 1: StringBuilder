@@ -1,0 +1,19 @@
+- StringBuilder
+  -------------
+1) Mutable object (in contrast to String object)
+2) Encapsualtes char[] buffer and int count:
+
+char[] buffer	
+int count;		// index of the NEXT available char in the array
+
+StringBuilder s = new StringBuilder("Hello ");	// count = 6
+s.append("World");	// new memory re-allocation. count = 11
+
+Constructors
+------------
+public StringBuilder(){}
+public StringBuilder(String s){}
+public StringBuilder(CharSequence cs){}
+public StringBuilder(int i){} // specifies the size of char[] buffer
+							  // so that we do not re-allocate memory
+	

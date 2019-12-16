@@ -1,0 +1,122 @@
+- Prevent Instantiation
+  ---------------------
+			Animal
+	Feline				Canine
+Lion	Tiger		Wolf	Dog
+
+new Animal() ??	// private Animal(){}; ?? // abstract class
+new Feline() ?? // private Feline(){}; ?? // abstract class
+new Canine() ?? // private Canine(){}; ?? // abstract class
+
+private constructor could also be a solution 
+in case we hadn't inheritance (super() is required)..
+
+abstract classes are common classes that however cannot directly be instantiated.
+Hence, they are implemented by their concrete derivatives..
+
+- Abstract Behaviors
+  ------------------
+abstract class Animal {
+
+	abstract String likesToEat();
+	
+}
+
+RULES:
+-----
+1) Constructors are valid, but CANNOT be called by anyone apart from super() calls
+2) Abstract classes CAN have more abstract derivatives!
+3) Abstract class CAN encapsulate concrete methods
+4) Abstract class CAN encapsulate member variables
+5) Abstract methods CANNOT be declared as PRIVATE	// should be overridden
+6) Abstract methods CANNOT encapsulate implementation
+7) Final methods SHALL NOT be declared as PRIVATE	// final cannot be overridden, but why should we care as soon as it's private?
+
+It is a "compile-time error" if a method declaration that contains the keyword 
+- abstract 
+contains also any one of the keywords:
+- private
+- static
+- final
+- native
+- strictfp
+- synchronized.
+
+- Interfaces
+  ----------
+"Generalization"!!!	// interface or abstract class
+"Specialization"!!!	// concrete class
+
+RULES:
+-----
+1) Interfaces CAN extends multiple interfaces (multiple inheritance)
+2) Classes can implement multiple interfaces!!!
+3) Interfaces have by default and only "public static final" variables!!!
+   These static final variables (constants) MUST BE initialized!!!
+4) Interfaces have by default and only "public abstract" methods!!!
+5) Methods SHALL NOT be declared as final	// final cannot be overridden, so what the reason to add it as a promise?
+6) Interface CANNOT encapsulate implementation (exception: static,default methods since J8)
+
+obj instanceof class,super-class,base-class,..,interface1,interface2,.. 
+
+- Static and default Interfaces Methods (Java8)!!
+  ----------------------------------------------- 
+
+public interface Promise {
+
+	// Factory Method returning the correct implementation!
+	static Promise getImplementation(int x) {
+		if (x > 0) {
+			return new PositivePromise();
+		} else if (x<0) {
+			return new NegativePromise();		
+		} else {
+			throw new Exception("Invalid argument");
+		}
+	}
+	
+	void getPromise();
+	
+	// Methods with default impl in case there are NOT overridden!
+	// Class or parent Class implementation will be preferred instead!
+	default void addPromise() {
+		// code
+	}
+}
+
+public class PositivePromise implements Promise {
+	public static iterateMethods() {
+		// code
+	}
+
+}
+public class NegativePromise implements Promise {}
+
+public class Main {
+	public static void main(String ... args) {
+		Promise p1 = Promise.getImplementation(1);	// valid
+		
+		// In case we have instantiated an object
+		// we CANNOT invoke on it the static interface method!!
+		Promise p2 = new PositivePromise();
+		p2.getImplementation(2);	// invalid!!
+		
+		// This is diff in comparison to classes where it is
+		// "bad design but legitimate"
+		 PositivePromise p3 = new PositivePromise();
+		 p3.iterateMethods();	// valid, but it's static - didn't need instantiation
+	}
+} 
+  
+Apparently it's not arbitrary to say:
+- "comment out"	// disable
++ "uncomment"	// enable
+  
+  
+  
+  
+  
+  
+  
+  
+  

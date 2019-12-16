@@ -1,0 +1,72 @@
+- Traditional for loop
+  --------------------
+for (<initialization>; <condition>; <prepare for next iteration>) {
+	// Add some code
+}
+
+for (int p = 0; p < 1000; p++) {
+	// Add some code
+}
+
+// Multiple declarations OR expressions in the 1st statement
+   ---------------------------------------------------------
+int p = 0; Thing t = new Thing();
+for (t.doStaff(), p = 99, t = new Thing(2); p < 1000; p++) {
+	// Add some code
+}
+
+// Multiple expressions in the 3rd statement
+   -----------------------------------------
+for (int p = 0; p < 1000; t.doStaff(), p++, t = new Thing(2)) {
+	// Add some code
+}
+
+// No expression in the 1st and 3rd statement
+   ------------------------------------------
+for (;<condition>;) {} // loop with exit statement
+while (<condition>) {} // loop with exit statement
+
+for (;;) {}		 // infinite loop
+while (true) {}	 // infinite loop
+
+- Enhanced for loop
+  -----------------
+Handles each item of a "Bucket"(="κουβά") that implements the "Iterable" Interface!
+The Bucket can be either an:
+a) Array
+b) Generic Collection (Iterable Collection)
+
+Iterable interface defines:
+	public Iterator iterator(); // Do you have any next item? If yes return it, else return null
+
+	Iterator interface dedines:
+		public boolean hasNext();
+		public Object next();
+
+E.g:
+
+ArrayList<Object> objs = new ArrayList<>(); // Java 7 diamond operator: Generic is found from the Instance type
+
+// Iterate using "iterator loop"
+   -----------------------------
+Iterator<Object> objsIterator = objs.iterator();
+while (objsIterator.hasNext()) {
+	Object obj = objsIterator.next();
+	System.out.println(obj); // Manipulate obj but NOT modify it!
+}
+for (Iterator<Object> objsIterator = objs.iterator(); objsIterator.hasNext();){
+	Object obj = objsIterator.next();	
+	System.out.println(obj); // Manipulate obj but NOT modify it!
+}
+
+// Iterate using "enhanced for loop"
+   ---------------------------------
+for (Object obj : objs) {
+	System.out.println(obj); // Manipulate obj but NOT modify it!
+}
+
+// Iterate using Java8 "stream()"
+   ------------------------------
+objs.forEach((obj) -> {
+	System.out.println(obj); // Manipulate obj
+});

@@ -1,0 +1,6 @@
+- Object Lifecycle
+  ----------------
+  
+a) Creation
+b) Dereference by re-assignment
+c) GC							// when object gets out of scope (unreachable), gets eligible to be collected by the GC upon next GC execution
